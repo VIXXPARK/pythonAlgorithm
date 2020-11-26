@@ -24,3 +24,6 @@ for i in range(commands):
             left.pop()
 
 print(''.join(left+right[::-1]))
+
+## 어느 한 위치를 기준으로 값이 추가 되고 삭제 될때에는 두개의 스택
+## 또는 큐를 통해 두개의 통에 값을 넣어서 문제를 풀자
