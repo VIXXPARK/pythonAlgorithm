@@ -1,2 +1,2 @@
-A=[]
-print(A)
+
+print(chr(ord('A')+10-10))
