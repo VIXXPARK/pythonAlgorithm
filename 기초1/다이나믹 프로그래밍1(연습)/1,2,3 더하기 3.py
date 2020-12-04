@@ -19,13 +19,13 @@ for i in li:
 
 
 
-# d = [0]*1000001
-# d[0]=1;d[1]=1;d[2]=2
+# dp = [0]*1000001
+# dp[0]=1;dp[1]=1;dp[2]=2
 # for i in range(3,1000001):
-#     if d[i]==0:
-#         d[i] = d[i-1]+d[i-2]+d[i-3]
-#         d[i] %= 1000000009
+#     if dp[i]==0:
+#         dp[i] = dp[i-1]+dp[i-2]+dp[i-3]
+#         dp[i] %= 1000000009
 # for _ in range(int(input())):
 #     n = int(input())
-#     print(d[n])
+#     print(dp[n])
 # https://hong-i.tistory.com/111

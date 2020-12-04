@@ -12,6 +12,3 @@ for i in range(1,N+1):
         dp[i][1]=li[i]+dp[i-1][1]
     ans=max(ans,max(dp[i][1],dp[i][0]))
 print(ans)
-        
-
-    
