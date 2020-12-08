@@ -8,21 +8,22 @@ final=0
 ret=10000000000
 def func(y,x,final,ans,cnt):
     global ret
-    go=False
-    ans+=li[y][x]
-    for i in range(N):
-        if not travel[i] and li[x][i]!=0:
-            travel[i]=True
-            func(x,i,final,ans,cnt+1)
-            go=True
-            travel[i]=False
-    if cnt==N:
-        if li[x][final]!=0:
-            ans+=li[x][final]
-            ret=min(ret,ans)
-            return
-        else:
-            return
+    if ans<ret:
+        ans+=li[y][x]
+        for i in range(N):
+            if not travel[i] and li[x][i]!=0:
+                travel[i]=True
+                func(x,i,final,ans,cnt+1)
+                travel[i]=False
+        if cnt==N:
+            if li[x][final]!=0:
+                ans+=li[x][final]
+                ret=min(ret,ans)
+                return
+            else:
+                return
+    else:
+        return
 
 
 
@@ -36,3 +37,20 @@ for i in range(N):
             travel[i]=False
             travel[j]=False
 print(ret)
+
+# N=int(input())
+# W=[list(map(int,input().split()))for i in range(N)]
+# V=[0]*N
+# M=1e10
+# def back_track(n,c):
+#     global N,W,V,M
+#     if c<M:
+#         if all(V) and n==0:
+#             M=min(M,c)
+#         for i in range(N):
+#             if W[n][i]>0 and not V[i]:
+#                 V[i]+=1
+#                 back_track(i,c+W[n][i])
+#                 V[i]-=1
+# back_track(0,0)
+# print(M)
