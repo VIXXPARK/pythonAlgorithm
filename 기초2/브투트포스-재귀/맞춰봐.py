@@ -37,3 +37,5 @@ for i in range(N):
 result = [0] * N
 solve(0)
 print(' '.join(map(str, result)))
+
+# https://hazung.tistory.com/127
