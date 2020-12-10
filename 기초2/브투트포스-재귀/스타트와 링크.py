@@ -38,31 +38,37 @@ func(ans,0,N//2-1)
 print(ret)
 
 
-# import sys
-# input = sys.stdin.readline
-
 # N = int(input())
-# S = [list(map(int,input().split())) for _ in range(N)]
+# table = []
+# for i in range(N):
+#     table.append(list(map(int,input().split())))
+# min_differ = 10000000
 
-# ret = []
-# def sol(start,link,s1,s2,i):
-#   if i == N:
-#     ret.append(abs(s1-s2))
-#     return
-#   if len(start) < N//2:
-#     start.append(i)
-#     temp = 0
-#     for j in start:
-#       temp += S[j][i] + S[i][j]
-#     sol(start,link,s1+temp,s2,i+1)
-#     start.pop()
-#   if len(link) < N//2:
-#     link.append(i)
-#     temp = 0
-#     for j in link:
-#       temp += S[j][i] + S[i][j]
-#     sol(start,link,s1,s2+temp,i+1)
-#     link.pop()
-#   return
-# sol([0],[],0,0,1)
-# print(min(ret))
+# def recursive(iteration, a_num, b_num, a_stat, b_stat, a_set, b_set):
+#     global table
+#     global min_differ
+#     global N
+#     if((a_num + b_num) == N):
+#         differ = abs(a_stat - b_stat)
+#         if(min_differ > differ):
+#             min_differ = differ
+#         return
+    
+#     if(a_num < int(N/2)):
+#         new_stat = 0
+#         for i in a_set:
+#             new_stat += (table[iteration][i] + table[i][iteration])
+#         a_set.append(iteration)
+#         recursive(iteration + 1, a_num + 1, b_num, a_stat + new_stat, b_stat, a_set, b_set)
+#         a_set.pop()
+        
+#     if(b_num < int(N/2)):
+#         new_stat = 0
+#         for i in b_set:
+#             new_stat += (table[iteration][i] + table[i][iteration])
+#         b_set.append(iteration)
+#         recursive(iteration + 1, a_num, b_num + 1, a_stat, b_stat + new_stat, a_set, b_set) 
+#         b_set.pop()
+
+# recursive(0, 0, 0, 0, 0, [], [])
+# print(min_differ)

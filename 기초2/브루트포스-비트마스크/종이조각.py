@@ -42,3 +42,5 @@ arr = [list(map(int, input())) for _ in range(n)]
 maxAns = 0
 bitmask()
 print(maxAns)
+
+#https://kyun2da.github.io/2020/09/26/paperPiece/
