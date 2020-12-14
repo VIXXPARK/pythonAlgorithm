@@ -19,11 +19,11 @@ def bfs(n):
                 q.append([a[0]-1,a[1]+1])
         if a[0]+1<=100000:
             if a[1]+1<loc[a[0]+1]:
-                loc[a[0]+1]=a[1]
+                loc[a[0]+1]=a[1]+1
                 q.append([a[0]+1,a[1]+1])
         if a[0]*2<=100000:
             if a[1]+1<loc[a[0]*2]:
-                loc[a[0]*2]=a[1]*2
+                loc[a[0]*2]=a[1]+1
                 q.append([a[0]*2,a[1]+1])
 
 bfs(N)

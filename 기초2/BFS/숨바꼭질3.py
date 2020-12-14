@@ -29,4 +29,3 @@ n,k=map(int,input().split())
 visited=[0]*100001
 travel=[False]*100001
 solve(visited,n,k)
-
