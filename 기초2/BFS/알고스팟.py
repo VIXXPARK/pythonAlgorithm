@@ -10,33 +10,25 @@ def scope(y,x):
         return True
     else:
         return False
-
 def bfs():
     q=deque()
     q.append([0,0])
     visited[0][0]=True
-
     while q:
         fy,fx=q.popleft()
-
         if fy==M-1 and fx ==N-1:
             print(graph[fy][fx])
             break
-
         for i in range(4):
             my=fy+dy[i]
             mx=fx+dx[i]
-
             if scope(my,mx):
-
                 if not visited[my][mx] and graph[my][mx]==0:
                     visited[my][mx]=True
                     graph[my][mx]=graph[fy][fx]
                     q.appendleft([my,mx])
-
                 elif not visited[my][mx] and graph[my][mx]!=0:
                     visited[my][mx]=True
                     graph[my][mx]=graph[fy][fx]+1
                     q.append([my,mx])
-
 bfs()
