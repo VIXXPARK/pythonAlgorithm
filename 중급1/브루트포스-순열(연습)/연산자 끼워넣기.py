@@ -35,6 +35,7 @@ def func(celi,aim,ans):
             num[celi+1]=ans
 
             func(celi+1,aim,ans)
+            
             sign[x]=sign[x]+1
             num[celi+1]=tmp
             ans=0
