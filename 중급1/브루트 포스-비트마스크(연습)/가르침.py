@@ -62,12 +62,12 @@ for _ in range(num_of_words):
 	elif len(word) > num_of_teaching:
 		imposs += 1
 	else:
-		remain |= word
+		remain |= word # or 연산후 할당 
 		words.append(word_to_bit(word))
 remain = list(remain)
 
 def teach(lst, mask, k):
-	if k < 0:
+	if k < 0: ## 단어 수가 5보다 부족할 때
 		return 0
 	elif k == 0:
 		result = poss
