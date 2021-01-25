@@ -16,13 +16,22 @@ for val in range(length):
             break
 print(output)
 
-        
-#####
-def twoSum(self, nums: 'List[int]', target: 'int') -> 'List[int]':
-        checker = {}
-        for i, v in enumerate(nums):
-            if target - v in checker:
-                return [checker[target - v], i]
-            else:    
-                checker[v] = i
-        return []        
+#######################
+
+def twoSum2(nums: list, target: int) -> list:
+    for i in range(len(nums)-1):
+        try:
+            return [i, nums[i+1:].index(target - nums[i])+i+1]
+        except:
+            pass
+print(twoSum2([2,7,11,12],9))
+
+##########################
+def twoSum3(nums, target):
+         h = {}
+         for i, num in enumerate(nums):
+            n = target - num
+            if n not in h:
+                h[num] = i
+            else:
+                return [h[n], i]
