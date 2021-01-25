@@ -1,0 +1,5 @@
+hrs = input("Enter Hours:")
+rates = input("Enter rates:")
+hrs=float(hrs)
+rates=float(rates)
+print(40*rates+(hrs-40.0)*rates*1.5) if hrs>40.0 else print(hrs*rates)
