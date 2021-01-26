@@ -15,11 +15,18 @@ def solution1(p, c):
             answer=k
             break
     return answer
-print(solution1(p,c))
-##################################
+#####################################################################################
 import collections
-
-
 def solution(participant, completion):
     answer = collections.Counter(participant) - collections.Counter(completion)
     return list(answer.keys())[0]
+#####################################################################################
+def solution3(participant, completion):
+    participant.sort()
+    completion.sort()
+    for p, c in zip(participant, completion):
+        if p != c:
+            return p
+    return participant[-1]
+print(solution3(p,c))
+
