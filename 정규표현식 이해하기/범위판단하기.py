@@ -27,7 +27,7 @@ print(re.match('ab[0-9]?c','ab3c')) # [0-9] 위치에 숫자가 1개 있으므�
 # <re.Match object; span=(0, 4), match='ab3c'>
 print(re.match('ab.d','abxd')) # .이 있는 위치에 문자가 1개 있으므로 패턴에 매칭됨
 # <re.Match object; span=(0, 4), match='abxd'>
-print(re.match('ab.d','ab##d')) # .이 있는 위치에 문자가 없으므로 None 발생
+print(re.match('ab.d','ab##d')) # .이 있는 위치에 문자가 2개 이상이므로 None 발생
 #None
 
 # 그럼 문자(숫자)가 정확히 몇 개 있는지 판단하고 싶을 수도 있겠죠? 이때는 문자 뒤에 {개수} 형식을 지정합니다. 

@@ -2,30 +2,21 @@ def isValid(self, s: str) -> bool:
     left=['(','{','[']
     stk=[]
     for val in s:
-        if val in left:
-            stk.append(val)
+        if val in left: stk.append(val)
         else:
             if len(stk)==0:
                 return False
             if stk[-1]=='(':
-                if val!=')':
-                    return False
-                else:
-                    stk.pop()
+                if val!=')':return False
+                else:stk.pop()
             elif stk[-1]=='{':
-                if val!='}':
-                    return False
-                else:
-                    stk.pop()
+                if val!='}':return False
+                else:stk.pop()
             elif stk[-1]=='[':
-                if val!=']':
-                    return False
-                else:
-                    stk.pop()
-    if len(stk)!=0:
-        return False
-    else:
-        return True
+                if val!=']':return False
+                else:stk.pop()
+    if len(stk)!=0:return False
+    else:return True
 
 ################################################
 class Solution:
