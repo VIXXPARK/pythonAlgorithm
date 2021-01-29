@@ -45,3 +45,16 @@ def solution(N, stages):
             result[stage] = 0 # 진행되지 않는 스테이지는 0으로 초기화
     return sorted(result, key=lambda x : result[x], reverse=True) # sorted에 result를 그냥 넘기면 result의 keys가 들어감
                                                                   # lambda는 기준을 result[x](=value)로 정렬 reverse는 오름차순
+
+#####################################################################################################################
+def solution3(N, stages):
+    dic={}
+    totalNum=len(stages)
+    for i in range(1,N+1):
+        if i in stages:
+            num=stages.count(i)
+            dic[i]=num/totalNum
+            totalNum-=num
+        else:
+            dic[i]=0
+    return sorted(dic,key= lambda x:dic[x],reverse=True)                                                                  
