@@ -3,7 +3,7 @@ def solution(s):
     if len(s)==1:
         return 1
     num=sys.maxsize
-    for i in range(1,len(s)):
+    for i in range(1,(len(s)//2)+1):
         lst=[]
         start=0
         while start<=len(s)-1:
@@ -61,7 +61,7 @@ def solution2(text):
     return min(compress(text, tok_len) for tok_len in list(range(1, int(len(text)/2) + 1)) + [len(text)])
 ##############################################################################################################
 
-def solution3(s):
+def solution3(s):## 순서가 우선 알파벳 관련 숫자 증가 시키고 그다음에 일치하지 않으면 중복 숫자 증가
     answer = len(s)
     for x in range(1, int(len(s)/2)+1):
         d = 0

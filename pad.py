@@ -26,4 +26,5 @@ a = [
 ]
 
 for x in a:
-    print(solution(x))
+    # print(solution(x))
+    print(list(range(1, int(len(x)/2) + 1)) + [len(x)])

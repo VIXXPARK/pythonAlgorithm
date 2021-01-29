@@ -12,57 +12,37 @@ query=["java and backend and junior and pizza 100",
 "- and backend and senior and - 150",
 "- and - and - and chicken 100",
 "- and - and - and - 150"]
-def score(info,query):
-    return int(info)>=int(query)
-
-infos=[]
-querys=[]
-lang={'java':0,'python':1,'cpp':2,'-':3}
-job={'backend':0,'frontend':1,'-':2}
-stage={'junior':0,'senior':1,'-':2}
-soul = {'pizza':0,'chicken':1,'-':2}
-result=[[[[ [] for soul in range(3)] for stage in range(3)]for job in range(3)]for lang in range(4)]
-vs=[0 for _ in range(len(query))]              
-for x in info:
-    xx=(x.split())
-    result[lang[xx[0]]][job[xx[1]]][stage[xx[2]]][soul[xx[3]]].append(int(xx[4]))
-    result[lang['-']][job['-']][stage['-']][soul['-']].append(int(xx[4]))
-    result[lang['-']][job['-']][stage['-']][soul[xx[3]]].append(int(xx[4]))
-    result[lang['-']][job['-']][stage[xx[2]]][soul['-']].append(int(xx[4]))
-    result[lang['-']][job[xx[1]]][stage['-']][soul['-']].append(int(xx[4]))
-    result[lang[xx[0]]][job['-']][stage['-']][soul['-']].append(int(xx[4]))
-    result[lang[xx[0]]][job[xx[1]]][stage['-']][soul['-']].append(int(xx[4]))
-    result[lang[xx[0]]][job['-']][stage[xx[2]]][soul['-']].append(int(xx[4]))
-    result[lang[xx[0]]][job['-']][stage['-']][soul[xx[3]]].append(int(xx[4]))
-    result[lang['-']][job[xx[1]]][stage[xx[2]]][soul['-']].append(int(xx[4]))
-    result[lang['-']][job[xx[1]]][stage['-']][soul[xx[3]]].append(int(xx[4]))
-    result[lang['-']][job['-']][stage[xx[2]]][soul[xx[3]]].append(int(xx[4]))
-    result[lang['-']][job[xx[1]]][stage[xx[2]]][soul[xx[3]]].append(int(xx[4]))
-    result[lang[xx[0]]][job['-']][stage[xx[2]]][soul[xx[3]]].append(int(xx[4]))
-    result[lang[xx[0]]][job[xx[1]]][stage[xx[2]]][soul['-']].append(int(xx[4]))
-    result[lang[xx[0]]][job[xx[1]]][stage['-']][soul[xx[3]]].append(int(xx[4]))
-
-for a in range(4):
-    for b in range(3):
-        for c in range(3):
-            for d in range(3):
-                result[a][b][c][d].sort()
-
-for i,y in enumerate(query):
-    val = y.replace('and',' ')
-    yy=val.split()
-    
-    vs[i]=(len(result[lang[yy[0]]][job[yy[1]]][stage[yy[2]]][soul[yy[3]]])-bisect.bisect_left(result[lang[yy[0]]][job[yy[1]]][stage[yy[2]]][soul[yy[3]]],int(yy[4])))
-print(vs)
-
+import bisect
+def solution(info, query):
+    lang={'java':0,'python':1,'cpp':2,'-':3}
+    job={'backend':0,'frontend':1,'-':2}
+    stage={'junior':0,'senior':1,'-':2}
+    soul = {'pizza':0,'chicken':1,'-':2}
+    result=[[[[ [] for soul in range(3)] for stage in range(3)]for job in range(3)]for lang in range(4)]
+    vs=[0 for _ in range(len(query))]              
+    for x in info:
+        xx=(x.split())
+        for lan in [xx[0],'-']:
+            for jo in [xx[1],'-']:
+                for stg in [xx[2],'-']:
+                    for sul in [xx[3],'-']:
+                        result[lang[lan]][job[jo]][stage[stg]][soul[sul]].append(int(xx[4]))
+    for a in range(4):
+        for b in range(3):
+            for c in range(3):
+                for d in range(3):
+                    result[a][b][c][d].sort()
+    for i,y in enumerate(query):
+        val = y.replace('and',' ')
+        yy=val.split()
+        vs[i]=(len(result[lang[yy[0]]][job[yy[1]]][stage[yy[2]]][soul[yy[3]]])-bisect.bisect_left(result[lang[yy[0]]][job[yy[1]]][stage[yy[2]]][soul[yy[3]]],int(yy[4])))
+    return vs
 ##############################################################################################################################################################
 
 
 import bisect
 import collections
-
-
-def solution(info, query):
+def solution2(info, query):
     scores_by_type = collections.defaultdict(list)
     for resume in info:
         *types, score = resume.split()
@@ -73,7 +53,7 @@ def solution(info, query):
     answer = []
     for q in query:
         q_list = q.split()
-        type_filter = q_list[::2]
+        type_filter = q_list[::2] #2칸씩 뛰어넘기 
         score_filter = int(q_list[-1])
         count = sum(
             len(scores) - bisect.bisect_left(scores, score_filter)
