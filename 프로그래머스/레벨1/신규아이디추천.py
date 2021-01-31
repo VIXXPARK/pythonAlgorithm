@@ -1,31 +1,25 @@
 def solution1(new_id):
-    new_id=new_id.lower()
-    stk=''
-    for alpha in new_id:
-        if alpha.isalpha() or alpha.isdigit() or alpha=='-' or alpha=='_' or alpha=='.':
-            if len(stk)!=0:
-                if stk[-1]=='.' and alpha=='.':
-                    pass
-                else:
-                    stk+=alpha
-            else:
-                stk+=alpha
-    stk=list(stk)
-    if len(stk)!=0 and stk[0]=='.':
-        del stk[0]
-    if len(stk)!=0 and stk[-1]=='.':
-        del stk[-1]
-    if len(stk)==0:
-        stk+='a'
-    if len(stk)>=16:
-        stk=stk[0:15]
-        if stk[-1]=='.':
-            stk.pop()
-    if len(stk)<=2:
-        word=stk[-1]
-        while len(stk)<3:
-            stk+=word     
-    return ''.join(stk)
+    new_id=list(new_id.lower())
+    lst=[]
+    for i,x in enumerate(new_id):
+        if x in ['-','_','.'] or x.isdigit() or x.isalpha():
+            if len(lst)!=0 and lst[-1]=='.' and x=='.':
+                continue
+            elif len(lst)==0 and x=='.':
+                continue
+            lst.append(x)
+    if len(lst)!=0 and lst[-1]=='.': lst.pop()
+    if len(lst)==0:
+        lst.append('a')
+    if len(lst)>=16:
+        lst=lst[:15]
+        if lst[-1]=='.':
+            lst.pop()
+    if len(lst)<=2:
+        addChar=lst[-1]
+        while len(lst)<3:
+            lst.append(addChar)
+    return ''.join(lst)
 print(solution1('abcdefghijklmn.p'))
 
 ##################

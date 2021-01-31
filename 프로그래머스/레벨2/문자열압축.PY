@@ -1,34 +1,20 @@
-import sys
 def solution(s):
-    if len(s)==1:
-        return 1
-    num=sys.maxsize
+    num=len(s) ## 값의 초기화는 최초 문자열의 길이
     for i in range(1,(len(s)//2)+1):
         lst=[]
         start=0
-        while start<=len(s)-1:
+        while start<=len(s)-1: ## 문자열을 단위별로 분리
             lst.append(s[start:start+i])
             start+=i
         start=0
         ans=''
-        while start<len(lst):
+        while start<len(lst): ## 압축과정
             count=1
             for nextNum in range(start+1,len(lst)+1):
-                
-                if nextNum==len(lst):
-                    if count!=1:
-                        ch=str(count)+lst[start]
-                        ans+=ch
-                        count=1
-                        start+=1
-                    else:
-                        ans+=lst[start]
-                        start+=1
-                    break
-                elif lst[start]==lst[nextNum]:
+                if nextNum!=len(lst) and lst[start]==lst[nextNum]: ## 문자가 같으면 갯수 증가
                     count+=1
                 else:
-                    if count!=1:
+                    if count!=1: ## 갯수가 1초과 일때에만 숫자표시
                         ch=str(count)+lst[start]
                         ans+=ch
                         count=1
@@ -36,10 +22,9 @@ def solution(s):
                     else:
                         ans+=lst[start]
                         start+=1
-                    break
-                    
+                    break  
                 start+=1
-        num=min(num,len(ans))
+        num=min(num,len(ans)) 
     return num
 
 #############################################################

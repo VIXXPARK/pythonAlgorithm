@@ -21,12 +21,15 @@ def solution(participant, completion):
     answer = collections.Counter(participant) - collections.Counter(completion)
     return list(answer.keys())[0]
 #####################################################################################
-def solution3(participant, completion):
-    participant.sort()
-    completion.sort()
-    for p, c in zip(participant, completion):
-        if p != c:
-            return p
-    return participant[-1]
-print(solution3(p,c))
+def sol3(participant, completion):
+    answer = ''
+    parti={}
+    for x in participant:
+        parti[x]=parti.get(x,0)+1
+    for x in completion:
+        parti[x]-=1
+    for k,v in parti.items():
+        if v==1:
+            answer+=k
+    return answer
 
