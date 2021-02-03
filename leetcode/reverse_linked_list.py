@@ -21,13 +21,21 @@ class Solution:
             return None
         return tail
 ######################################################
-class Solution2:
-    def reverseList(self, head):
-        return self._reverse(head)
-
-    def _reverse(self, node, prev=None):
-        if not node:
+    def reverseList2(self, head):
+            """
+            :type head: ListNode
+            :rtype: ListNode
+            """
+            cur, prev = head, None
+            while cur:
+                cur.next, prev, cur = prev, cur, cur.next
             return prev
-        n = node.next
-        node.next = prev
-        return self._reverse(n, node)
+
+
+class Solution2(object):
+    def reverseList(self, head, prev=None):
+        if not head:
+          return prev
+  
+        curr, head.next = head.next, prev
+        return self.reverseList(curr, head)

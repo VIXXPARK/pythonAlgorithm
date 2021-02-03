@@ -9,3 +9,30 @@ def solution(n, arr1, arr2):
             else:str+=' '
         answer.append(str)
     return answer
+####################################
+# method에 관하여 아무것도 모를 때 
+def binary(num):
+    ans=[]
+    while num!=0:
+        ans.append(num%2)
+        num=num//2
+    return ans
+def solution2(n, arr1, arr2):
+    answer = []
+    for i in range(n):
+        up=binary(arr1[i])
+        down=binary(arr2[i])
+        while len(up)<n:
+            up.append(0)
+        while len(down)<n:
+            down.append(0)
+        up.reverse()
+        down.reverse()
+        val=''
+        for j in range(n):
+            if up[j]+down[j]!=0:
+                val+='#'  
+            else:
+                val+=' '
+        answer.append(val)
+    return answer

@@ -33,18 +33,18 @@ def solution1(N, stages):
         x=k
     return fin
 
-def solution(N, stages):
-    result = {}
-    denominator = len(stages)
-    for stage in range(1, N+1):
-        if denominator != 0:
-            count = stages.count(stage) #해당 갯수 카운트
-            result[stage] = count / denominator # 확률 계산
-            denominator -= count # 이미 진행된 스테이지 감소
+import collections
+def solution2(N, stages):
+    num=len(stages)
+    ans={}
+    dic=collections.Counter(stages)
+    for i in range(1,N+1):
+        if num!=0:
+            ans[i]=dic.get(i,0)/num
+            num-=dic.get(i,0)
         else:
-            result[stage] = 0 # 진행되지 않는 스테이지는 0으로 초기화
-    return sorted(result, key=lambda x : result[x], reverse=True) # sorted에 result를 그냥 넘기면 result의 keys가 들어감
-                                                                  # lambda는 기준을 result[x](=value)로 정렬 reverse는 오름차순
+            ans[i]=0
+    return sorted(ans,key=lambda x: ans[x],reverse=True)
 
 #####################################################################################################################
 def solution3(N, stages):

@@ -1,6 +1,4 @@
 import collections,time,random
-
-
 def binary_search(lst:list,startNum:int,target:int):
     start=startNum+1
     end=len(lst)-1
