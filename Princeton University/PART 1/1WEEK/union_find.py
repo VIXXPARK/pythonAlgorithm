@@ -28,7 +28,7 @@ class UnionFind:
             j = self._id[j]
         return j
 
-    def find(self, p, q):
+    def connected(self, p, q):
         return self._root(p) == self._root(q)
 
     def union(self, p, q):

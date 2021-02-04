@@ -32,10 +32,12 @@ class Solution:
             return prev
 
 
-class Solution2(object):
-    def reverseList(self, head, prev=None):
-        if not head:
-          return prev
-  
-        curr, head.next = head.next, prev
-        return self.reverseList(curr, head)
+def reverseList(self, head):
+    return self.helper(head, None)
+    
+def helper(self, head, node):
+    if not head:
+        return node
+    tmp = head.next
+    head.next = node
+    return self.helper(tmp, head)
