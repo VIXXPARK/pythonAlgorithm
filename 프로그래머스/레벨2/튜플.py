@@ -21,13 +21,18 @@ def solution(s):
                 ans.append(x)
                 check[x]=1    
     return ans
-################################################################
+################################################################################################################
 import re
 from collections import Counter
 def solution2(s):
     s = Counter(re.findall('\d+', s))
     return list(map(int, [k for k, v in sorted(s.items(), key=lambda x: x[1], reverse=True)])) #숫자가 많은 순으로 
-#################################################################
+
+def solution5(s):
+    s = Counter(re.findall('\d+', s)).most_common()
+    return list(map(int, [k for k, v in s]))
+
+################################################################################################################
 def solution3(s):
     answer = []
     s1 = s.lstrip('{').rstrip('}').split('},{')
@@ -40,5 +45,16 @@ def solution3(s):
             if int(i[j]) not in answer:
                 answer.append(int(i[j]))
     return answer
+#################################################################################################################
+import collections
+def solution4(s):
+    answer = []
+    s=s.lstrip('{').rstrip('}').split('},{')
+    for val in s:
+        val=val.split(',')
+        for v in val:
+            answer.append(int(v))
+    s=collections.Counter(answer).most_common()
+    return [k for k,v in s]
 
-print(solution2("{{4,2,3},{3},{2,3,4,1},{2,3}}"))
+print(solution("{{4,2,3},{3},{2,3,4,1},{2,3}}"))
