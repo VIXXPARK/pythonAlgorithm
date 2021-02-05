@@ -1,30 +1,27 @@
 def partition(p):
-    u,v='',''
-    if p!='':
-        stk=[]
-        stk.append(p[0])
-        init=p[0]
-        for i in range(1,len(p)):
-            if len(stk)!=0 and init!=p[i]:
-                stk.pop()
-                if i==len(p)-1:
-                    u,v=p[:i+1],p[i+1:]
-            elif len(stk)!=0 and init== p[i]:
-                stk.append(p[i])
-            else:
-                u,v=p[:i],p[i:]
-                break
-    return u,v
+    stk=[]
+    stk.append(p[0])
+    for i in range(1,len(p)):
+        if len(stk)!=0 and stk[-1]==p[i]:
+            stk.append(p[i])
+        elif len(stk)!=0 and stk[-1]!=p[i]:
+            stk.pop()
+            if i==len(p)-1:
+                return p,''
+        else:
+            return p[:i],p[i:]
+
 def isRight(p):
     stk=[]
-    for val in p:
-        if val=='(': 
+    for i,val in enumerate(p):
+        if val=='(':
             stk.append('(')
-        elif val==')' and len(stk)!=0 and stk.pop()=='(': 
-            continue
-        else: 
+        elif len(stk)!=0 and val==')':
+            stk.pop()
+        else:
             return False
-    return not stk       
+    return not stk
+
 def reverseParenthesis(p):
     ans=''
     for val in p:
@@ -33,16 +30,14 @@ def reverseParenthesis(p):
     return ans
 
 def solution(p):
-    answer = ''
     if p=='':
         return ''
     else:
         u,v=partition(p)
-        if u!='':
-            if isRight(u):
-                return u+solution(v)
-            else:
-                return '('+solution(v)+')'+reverseParenthesis(u)[1:-1]
+        if isRight(u):
+            return u+solution(v)
+        else:
+            return '('+solution(v)+')'+reverseParenthesis(u)[1:-1]
 
 ####################################################################################
 def solution2(p):

@@ -1,17 +1,23 @@
-from collections import deque
-dy = [1,-1,0,0]
-dx = [0,0,1,-1]
-m,n=map(int,input().split())
-visited = [[0 for _ in range(100)] for _ in range(100)]
-def bfs(y,x):
-    q=deque()
-    q.append((y,x))
-    while q:
-        fy,fx=q.popleft()
-        for i in range(4):
-            gy,gx=fy+dy[i],fx+dx[i]
-            if 0<=gy<m and 0<=gx<n:
-                if visited[gy][gx]!=1:
-                    visited[gy][gx]=1
-                    q.append((gy,gx))
-    
+import random,collections,time
+a=[]
+b=[]
+for i in range(1000000):
+    x,y=random.randint(-10,30),random.randint(-10,30)
+    q,w=random.randint(-10,30),random.randint(-10,30)
+    a.append([x,y])
+    b.append([q,w])
+start=time.time()
+def deciToStr(lst:list):
+    ans=[]
+    for val in lst:
+        val=''.join(list(map(str,val)))
+        ans.append(val)
+    return ans
+
+a=deciToStr(a) #n
+b=deciToStr(b) #n
+a=set(a) #n
+b=set(b) #n
+len(a)-len(a-b)
+times=time.time()-start
+print(times)
