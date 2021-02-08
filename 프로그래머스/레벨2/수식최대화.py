@@ -1,42 +1,34 @@
 import itertools
 def solution(expression):
-    answer=0
-    giho=['+','-','*']
-    cal=[]
-    num=[]
+    answer = 0
     start=0
+    num,cal=[],[]
     for idx,c in enumerate(expression):
-        if c in giho:
+        if c in ['+','-','*']:
             cal.append(c)
-            num.append(expression[start:idx])
+            num.append(int(expression[start:idx]))
             start=idx+1
-    if start!=len(expression):
-        num.append(expression[start:])
-    num=list(map(int,num))
-    for turn in itertools.permutations(giho,3):
-        calx=cal[:]
-        numx=num[:]
-        while len(numx)>1:
-            for order in turn:
+    num.append(int(expression[start:]))
+    for orders in itertools.permutations(['+','-','*'],3):
+        copyNum=num[:]
+        copyCal=cal[:]
+        while len(copyNum)>1:
+            for ods in orders:
                 while True:
                     try:
-                        if len(numx)>=2:
-                            idxx=calx.index(order)
-                            if order=='+':
-                                numx[idxx]+=numx[idxx+1]
-                            elif order=='-':
-                                numx[idxx]-=numx[idxx+1]
-                            elif order=='*':
-                                numx[idxx]*=numx[idxx+1]
-                            calx.remove(order)
-                            del numx[idxx+1]
-                        else:
-                            break
+                        idxx=copyCal.index(ods)
+                        if ods=='+':
+                            copyNum[idxx]=copyNum[idxx]+copyNum[idxx+1]
+                        elif ods=='-':
+                            copyNum[idxx]=copyNum[idxx]-copyNum[idxx+1]
+                        elif ods=='*':
+                            copyNum[idxx]=copyNum[idxx]*copyNum[idxx+1] 
+                        del copyNum[idxx+1]
+                        copyCal.remove(ods)  
                     except:
                         break
-            answer=max(answer,abs(numx[0]))
+        answer=max(answer,abs(copyNum[0]))                    
     return answer
-
 ######################################################################
 import re
 from itertools import permutations
@@ -70,5 +62,7 @@ def solution3(expression):
         for e in expression.split(a):
             temp = [f"({i})" for i in e.split(b)]
             temp_list.append(f'({b.join(temp)})')
+        print(a.join(temp_list))
         answer.append(abs(eval(a.join(temp_list))))
     return max(answer)
+print(solution3("100-200*300-500+20"))
