@@ -45,5 +45,8 @@ for val in itertools.combinations(['a','b','c'],3): #조합 반복되는 요소 
 for val in itertools.combinations_with_replacement(['a','b','c'],3): #조합 반복되는 요소 있음
     # print(val)
     pass
-
-
+lst=list(itertools.islice('ABCDEFG',2,None)) #['C', 'D', 'E', 'F', 'G']
+lst=list(itertools.islice('ABCDEFG',2,5)) #['C', 'D', 'E']
+# print(lst)
+s='ABCDEFG'
+# print(list(s[2:5]))  #['C', 'D', 'E']

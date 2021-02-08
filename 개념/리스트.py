@@ -19,7 +19,7 @@ g= [1,2,3,4,5,6,7]
 del g[1] # 해당 인덱스 없을 경우 error를 띄운다
 # print(g) [1,3,4,5,6,7]
 
-# remove value를 통한 삭제
+# remove value를 통한 삭제 시간 복잡도는 O(n)
 g = [1,2,3,4,5,6,7]
 g.remove(2)
 # print(g) [1,3,4,5,6,7]
@@ -27,15 +27,15 @@ g.remove(2)
 
 # index 메소드
 g=[7,6,5,4,3,2,1]
-# print(g.index(2)) list.index(값) 값에 대한 해당 자리를 리턴한다.
+# print(g.index(2)) list.index(값) 값에 대한 해당 자리를 리턴한다. 해당 값이 존재하지 않으면 error 발생
 
 #count
 cnt = [1,1,5,6,7,8,8,9]
-# print(cnt.count(8)) 괄호 안에 있는 해당 갯수를 리턴한다.
+# print(cnt.count(8)) 괄호 안에 있는 해당 갯수를 리턴한다. 해당 값이 존재하지 않으면 0으로 반환
 
 a= [1,2,3]
 b=a # 얕은 복사
-b[0]=5
+b[0]=5 # 직접적 값의 변환
 a # [5,2,3]
 
 # 하지만 str 문자열에서 얕은 복사를 해도 값을 변경 했을 때 같이 변하지는 않는다
@@ -43,9 +43,9 @@ a = "abc"
 b=a
 # print(a) abc
 # print(b) abc
-b="abcd"
-# print(a) abc
-# print(b) abcd
+b="abcd" # 재할당
+# print(a) #abc
+# print(b) #abcd
 
 a = [1,2,3]
 b = a[:]
@@ -66,7 +66,7 @@ b=a[:]
 # id(a) 와 id(b) id는 같은 것에 비하여
 # print(id(a[0])) 2670546993544
 # print(id(b[0])) 2670546993544
-# id(a[0]) 와 id(b[0]) 의 id는 다르다.
+# id(a[0]) 와 id(b[0]) 의 id가 같다.
 
 # a[0]= [8,9]
 # print(a) [[8, 9], [3, 4]] 

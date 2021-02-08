@@ -32,6 +32,6 @@ def binary_search(arr:list,target:int)->int:
             return mid
     return -1
 
-lst=[1,3,5,7,9,14,17,21]
-print(upperbound(lst,9))
-print(lowerbound(lst,9))
+lst=[1,2,4,5,6,8,9,11]
+# print(upperbound(lst,3))
+print(lowerbound(lst,0))

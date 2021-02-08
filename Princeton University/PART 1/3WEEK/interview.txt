@@ -1,0 +1,19 @@
+Merging with smaller auxiliary array. 
+Suppose that the subarray a[0] to a[n−1] is sorted and the subarray a[n] to a[2∗n−1] is sorted. 
+How can you merge the two subarrays so that a[0] to a[2∗n−1] is sorted using an auxiliary array of length nn (instead of 2n)?
+
+>>copy only the left half into the auxiliary array.
+
+
+Counting inversions. 
+An inversion in an array a[] is a pair of entries a[i] and a[j] such that i < j but a[i] > a[j]. 
+Given an array, design a linearithmic algorithm to count the number of inversions.
+
+>>count while mergesorting.
+
+Shuffling a linked list. 
+Given a singly-linked list containing n items, rearrange the items uniformly at random. 
+Your algorithm should consume a logarithmic (or constant) amount of extra memory and run in time proportional nlogn in the worst case
+
+>>design a linear-time subroutine that can take two uniformly shuffled linked lists of sizes n_1
+  and n_2 and combined them into a uniformly shuffled linked lists of size n_1 + n_2.

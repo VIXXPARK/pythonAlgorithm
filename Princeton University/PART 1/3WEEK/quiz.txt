@@ -1,0 +1,10 @@
+Given an array of points, which of the following approaches would be least useful for removing duplicate points? 
+Assume the point data type has the following three orders:
+
+ A natural order that compares by xx-coordinate and breaks ties by yy-coordinate.
+ One comparator that compares by xx-coordinate; another by yy-coordiante.
+
+ >>mergesort by xx-coordinate; quicksort by yy-coordinate
+
+ ?->Since quicksort is not stable, if you mergesort by x-coordinate and then quicksort by y-coordinate, 
+ there is no guarantee that equal points will be adjacent in the sorted order.
