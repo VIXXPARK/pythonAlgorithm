@@ -9,10 +9,10 @@ def quickSort(a:list,left=0,right=None):
 
 
 def partition(a:list,left,right):
-    x=a[left]
+    pivot=a[left]
     j=left
     for i in range(left+1,right+1):
-        if a[i]<=x:
+        if a[i]<=pivot:
             j+=1
             a[j],a[i]=a[i],a[j]
     a[left],a[j]=a[j],a[left]
