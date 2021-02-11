@@ -34,4 +34,4 @@ def binary_search(arr:list,target:int)->int:
 
 lst=[1,2,4,5,6,8,9,11]
 # print(upperbound(lst,3))
-print(lowerbound(lst,0))
+print(lowerbound(lst,2))
