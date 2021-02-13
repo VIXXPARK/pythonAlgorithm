@@ -23,12 +23,12 @@ for i in itertools.accumulate([1,2,3,4,5]):
     pass
 
 x=list(itertools.chain('ABC','FGZ')) # ['A','B','C','F','G','Z']
-
+print(x)
 
 x =(itertools.chain.from_iterable(['FGZ','ABC'])) #--> F G Z A B C
 
 x=itertools.compress(['a','b','c','d','e','f'],[1,0,0,1,1,1]) # A D E F
-print(list(x))
+# print(list(x))
 
 for val in itertools.product(['a','b','c'],['!','%','^']): ## sql문에서 join과 비슷한 함수
     # print(val)
