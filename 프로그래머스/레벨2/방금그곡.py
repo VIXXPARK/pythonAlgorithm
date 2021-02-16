@@ -57,3 +57,37 @@ def solution(m, musicinfos):
             if ans[0]==maxPlaying:
                 xx.append(ans[1])
         return xx[0]
+
+############################################################################################################
+
+def ttt(ts, te):
+    tmp = (int(te.split(":")[0]) - int(ts.split(":")[0])) * 60 + int(te.split(":")[1]) - int(ts.split(":")[1])
+    return tmp
+
+
+def con(s):
+    while s.find("#") != -1:
+        a = s.find("#")
+        s = s[:a - 1] + s[a - 1].lower() + s[a + 1:]
+    return s
+
+
+def solution2(m, musicinfos):
+    m = con(m)
+    ans = ''
+    temp = 0
+    for i in musicinfos:
+        mu = i.split(',')[2]
+        ss = i.split(',')[3]
+        ti = ttt(i.split(',')[0], i.split(',')[1])
+        ss = con(ss)
+        tttt = ''
+        ttmp = ti
+        while ttmp > ss.__len__():
+            tttt += ss
+            ttmp -= ss.__len__()
+        tttt += ss[:ti]
+        if m in tttt and temp < ti:
+            ans = mu
+            temp = ti
+    return ans if ans != '' else "(None)"
