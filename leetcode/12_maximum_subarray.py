@@ -10,4 +10,3 @@ class Solution:
                 else:
                     x.append(num)
         return max(x)
-            
