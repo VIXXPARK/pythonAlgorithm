@@ -3,6 +3,8 @@ def solution(key, lock):
     zerocount=0
     for i in lock:
         zerocount+=i.count(0)
+    if not zerocount:
+        return True
     lx=len(lock)
     lk=len(key)
     block=[0 for _ in range(lx)]
@@ -30,23 +32,20 @@ def solution(key, lock):
     for k in key4:
         k.reverse()
 
-    for i in range(lx-lk+1,lx+lx):
-        for j in range(lx-lk+1,lx+lx):
+    for i in range(lx-lk,lx+lx+1):
+        for j in range(lx-lk,lx+lx+1):
             flag=True
             cnt=0
             for y,val in enumerate(key):
                 if lx<=i+y<lx*2:
                     for x,v in enumerate(val):
                         if lx<=j+x<lx*2:
-                            if extLock[i][j]==1 and key[y][x]==1:
+                            if extLock[i+y][j+x]==1 and key[y][x]==1:
                                 flag=False
-                                break
-                            elif extLock[i][j]==0 and key[y][x]==1:
+                            elif extLock[i+y][j+x]==0 and key[y][x]==1:
                                 cnt+=1
-                if flag==False:
-                    break
-                if cnt==zerocount:
-                    return True
+            if cnt==zerocount and flag:
+                return True
 
             flag=True
             cnt=0
@@ -54,14 +53,11 @@ def solution(key, lock):
                 if lx<=i+y<lx*2:
                     for x,v in enumerate(val):
                         if lx<=j+x<lx*2:
-                            if extLock[i][j]==1 and key2[y][x]==1:
+                            if extLock[i+y][j+x]==1 and key2[y][x]==1:
                                 flag=False
-                                break
-                            elif extLock[i][j]==0 and key2[y][x]==1:
+                            elif extLock[i+y][j+x]==0 and key2[y][x]==1:
                                 cnt+=1
-                if flag==False:
-                    break
-                if cnt==zerocount:
+                if cnt==zerocount and flag:
                     return True
             
             flag=True
@@ -70,15 +66,12 @@ def solution(key, lock):
                 if lx<=i+y<lx*2:
                     for x,v in enumerate(val):
                         if lx<=j+x<lx*2:
-                            if extLock[i][j]==1 and key3[y][x]==1:
+                            if extLock[i+y][j+x]==1 and key3[y][x]==1:
                                 flag=False
-                                break
-                            elif extLock[i][j]==0 and key3[y][x]==1:
+                            elif extLock[i+y][j+x]==0 and key3[y][x]==1:
                                 cnt+=1
-                if flag==False:
-                    break
-                if cnt==zerocount:
-                    return True
+            if cnt==zerocount and flag:
+                return True
             
             flag=True
             cnt=0
@@ -86,16 +79,11 @@ def solution(key, lock):
                 if lx<=i+y<lx*2:
                     for x,v in enumerate(val):
                         if lx<=j+x<lx*2:
-                            if extLock[i][j]==1 and key4[y][x]==1:
+                            if extLock[i+y][j+x]==1 and key4[y][x]==1:
                                 flag=False
-                                break
-                            elif extLock[i][j]==0 and key4[y][x]==1:
+                            elif extLock[i+y][j+x]==0 and key4[y][x]==1:
                                 cnt+=1
-                if flag==False:
-                    break
-                if cnt==zerocount:
-                    return True
+            if cnt==zerocount and flag:
+                return True
     
     return False
-
-print(solution([[0, 0, 0], [1, 0, 0], [0, 1, 1]],[[1, 1, 1], [1, 1, 0], [1, 0, 1]]))
