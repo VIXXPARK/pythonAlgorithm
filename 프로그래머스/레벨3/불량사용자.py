@@ -14,10 +14,11 @@ def find(bancnt,depth,ans):
         world[''.join(tmp)]=1
     else:
         for val in bancnt[depth]:
-            ans[val]=ans.get(val,0)+1
-            find(bancnt,depth+1,ans)
-            ans[val]-=1
-
+            if ans.get(val,0)==0:
+                ans[val]=ans.get(val,0)+1
+                find(bancnt,depth+1,ans)
+                ans[val]-=1
+                
 def solution(user_id, banned_id):
     global world,count
     answer = 1
