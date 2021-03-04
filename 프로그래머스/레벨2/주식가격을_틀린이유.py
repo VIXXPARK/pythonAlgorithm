@@ -8,7 +8,7 @@ start = time.time()
 
 answer = [0 for _ in range(10000)]
 for i in range(10000):
-    for j in range(100):
+    for j in range(1000):
         answer[i]+=1
     
 finish = time.time()-start
