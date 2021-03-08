@@ -1,25 +1,30 @@
 import itertools
 import time
 n=2
-data= ["M~C<2", "C~M>1"]	
+data= ["N~F=0", "R~T>2"]
 mem = ['A','C','F','J','M','N','R','T']
 pairs = list(map(list,itertools.permutations(mem,8)))
 count=0
-for pair in pairs: ## 한 개의 조합에 대하여 기준을 평가 하는 경우가 더 빠르다.  조합->기준
+for idx,pair in enumerate(pairs): ## 한 개의 조합에 대하여 기준을 평가 하는 경우가 더 빠르다.  조합->기준
     for check in data:
         first,second,case,num=check[0],check[2],check[3],int(check[4])
         n1=pair.index(first)
         n2=pair.index(second)
-        if case=='=':
-            if int(abs(n1-n2))-1!=num:
+        flag=False
+        if pair!=[]:
+            if case=='=':
+                if abs(n1-n2)-1!=num:
+                    flag=True
+            elif case=='>':
+                if abs(n1-n2)-1<=num:
+                    flag=True
+            else:
+                if abs(n1-n2)-1>=num:
+                    flag=True
+            if flag:
                 count+=1
                 break
-            elif int(abs(n1-n2))-1>=num:
-                count+=1
-                break
-            elif int(abs(n1-n2))-1<=num:
-                count+=1
-                break
+print(40320-count)
 
 
 
