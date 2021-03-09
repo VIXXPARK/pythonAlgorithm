@@ -6,11 +6,11 @@ class Solution:
         memory=[0 for _ in range(101)]
         while cur<len(T):
             if T[cur]==k:
+                answer.append(0)
                 cur+=1
             else:
                 if memory[T[cur]]>cur:
                     answer.append(memory[T[cur]]-cur)
-                    break
                 else:
                     for i in range(cur+1,len(T)):
                         if T[i]>T[cur]:
@@ -21,6 +21,3 @@ class Solution:
                         answer.append(0)
                 cur+=1
         return answer
-
-s=Solution()
-print(s.dailyTemperatures([89,62,70,58,47,47,46,76,100,70]))
