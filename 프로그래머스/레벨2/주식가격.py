@@ -25,5 +25,18 @@ def solution2(prices):
             count += 1
 
         answer.append(count)
-
+    return answer
+###############################################################################
+def solution(prices):
+    answer = [0] * len(prices)
+    
+    length=len(prices)
+    stack=[]
+    for i,v in enumerate(prices):
+        while stack and prices[stack[-1]]>prices[i]:
+            cur=stack.pop()
+            answer[cur]=i-cur
+        stack.append(i)
+    for v in stack:
+        answer[v]=length-v-1
     return answer
