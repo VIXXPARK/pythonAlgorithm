@@ -1,6 +1,6 @@
 import functools
 
-def comparator(a,b):
+def comparator(a,b): ## 당분간 매일 봐야겠다. 이해하기 힘들구만 .. 고독하구만 
     t1 = a+b
     t2 = b+a
     return (int(t1) > int(t2)) - (int(t1) < int(t2)) #  t1이 크다면 1  // t2가 크다면 -1  //  같으면 0
