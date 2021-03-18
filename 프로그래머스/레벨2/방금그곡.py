@@ -1,54 +1,45 @@
+def partition(m,ltn):
+    idx=0
+    while idx<len(m):
+        if idx+1<len(m) and m[idx+1]=='#':
+            ltn.append(m[idx:idx+2])
+            idx+=2
+        else:
+            ltn.append(m[idx:idx+1])
+            idx+=1
+
 def solution(m, musicinfos):
     answer = '(None)'
     ltn=[]
-    i=0
-    while i<len(m):
-        if i+1<len(m) and m[i+1]=='#':
-            ltn.append(m[i:i+2])
-            i+=2
+    length=0 #longest melody
+    partition(m,ltn) #insert ltn
+    for msi in musicinfos:
+        msi=msi.split(',')
+        st,et,song,melody=msi[0],msi[1],msi[2],msi[3]
+        st=st.split(':')
+        et=et.split(':')
+        stotal=int(st[0])*60+int(st[1])
+        etotal=int(et[0])*60+int(et[1])
+        ttotal=etotal-stotal
+        mel=[]
+        partition(melody,mel) #insert mel
+        mtotal=[]
+        if len(mel)>=ttotal:
+            mtotal=mel[:ttotal]
         else:
-            ltn.append(m[i:i+1])
-            i+=1
-    maxLen=0
-    for info in musicinfos:
-        start,end,song,melody=info.split(',')
-        sh,sm=map(int,start.split(':'))
-        eh,em=map(int,end.split(':'))
-        i=0
-        tempo=[]
-        music=[]
-        while i<len(melody):
-            if i+1<len(melody) and melody[i+1]=='#':
-                tempo.append(melody[i:i+2])
-                i+=2
-            else:
-                tempo.append(melody[i:i+1])
-                i+=1
-        tot=(eh-sh)*60+(em-sm)
-        play=tot
-        lenx=len(tempo)
-        if tot>=len(tempo):
-            music+=tempo
-            tot-=lenx
-            while tot:
-                if tot-lenx>=0:
-                    music+=tempo
-                    tot-=lenx
+            while ttotal:
+                if ttotal>len(mel):
+                    mtotal+=mel[:]
+                    ttotal-=len(mel)
                 else:
-                    music+=tempo[:tot]
-                    tot=0
-        else:
-            music=tempo[:tot]
-        if len(ltn)>len(music):
-            continue
-        else:
-            for i in range(0,play-len(ltn)+1):
-                if ltn==music[i:i+len(ltn)]:
-                    if maxLen<play:
-                        maxLen=play
-                        answer=song
-                        break
-
+                    mtotal+=mel[:ttotal]
+                    ttotal=0
+        for i in range(0,len(mtotal)-len(ltn)+1):
+            if ltn==mtotal[i:i+len(ltn)]:
+                if length<len(mtotal):
+                    length=len(mtotal)
+                    answer=song
+                    break
     return answer
 
 ############################################################################################################

@@ -47,3 +47,25 @@ def solution2(files):
     return sorted(files, key = lambda x: key_function(x.lower()))
 
 print(solution2(["dd1234124123ddd.zip",'img000012345', 'img1.png','img2','IMG02','F-15','foo010bar020.zip','B-50 Superfortress']))
+########################################################################################################################################
+def head_compare(data):    
+    route = 0;count=0
+    answer = ['', '']
+    for i, v in enumerate(data):
+        if (route == 0):
+            if (v.isnumeric() == True):
+                answer[0] = data[:i].lower()
+                route = 1;count+=1
+                answer[1] += v
+        elif (route == 1):
+            if (v.isnumeric() == True) and count<=5:
+                answer[1] += v
+                count+=1
+            else:
+                break
+    answer[1] = int(answer[1])
+    return answer
+
+def solution3(files):
+    files.sort(key = lambda x:head_compare(x))
+    return files
