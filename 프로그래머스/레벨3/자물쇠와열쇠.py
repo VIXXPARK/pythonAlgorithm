@@ -1,11 +1,11 @@
-def route(i,j,lock,ans,length,keylen,answer):
+def route(i,j,lock,ans,lockLen,keylen,answer):
     flag=True
     cnt=0
     keyX=0
-    for x in range(i,i+length):
+    for x in range(i,i+lockLen):
         keyY=0
-        for y in range(j,j+length):
-            if 0<=x<length and 0<=y<length and (0<=keyX<keylen and 0<=keyY<keylen):
+        for y in range(j,j+lockLen):
+            if 0<=x<lockLen and 0<=y<lockLen and (0<=keyX<keylen and 0<=keyY<keylen):
                 if lock[x][y]==1 and ans[keyX][keyY]==1:
                     flag=False
                     break
