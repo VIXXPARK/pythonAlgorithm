@@ -1,25 +1,26 @@
-class Solution:
-    def reconstructQueue(self, people):
-        people = sorted(people,key=lambda x:(x[1],x[0]) )
-        answer=[]
-        while people:
-            if not answer:
-                answer.append(people.pop(0))
+def reconstructQueue(people):
+    people = sorted(people,key=lambda x:(x[1],x[0]) )
+    answer=[]
+    while people:
+        if not answer:
+            answer.append(people.pop(0))
+        else:
+            x=people.pop(0)
+            cnt=0
+            loc=0
+            for idx,v in enumerate(answer):
+                if cnt==x[1] and v[0]>=x[0]:
+                    loc=idx
+                    break
+                if v[0]>=x[0]:
+                    cnt+=1
+            if loc!=0:
+                answer.insert(loc,x)
             else:
-                x=people.pop(0)
-                cnt=0
-                loc=0
-                for idx,v in enumerate(answer):
-                    if cnt==x[1] and v[0]>=x[0]:
-                        loc=idx
-                        break
-                    if v[0]>=x[0]:
-                        cnt+=1
-                if loc!=0:
-                    answer.insert(loc,x)
-                else:
-                    answer.append(x)
-        return answer
+                answer.append(x)
+    return answer
+
+reconstructQueue([[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]])
 
 #################################################################
 class Solution2:
