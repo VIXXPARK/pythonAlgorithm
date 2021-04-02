@@ -16,3 +16,4 @@ import re
 # print(re.match('hello|world','hello'))
 # #<re.Match object; span=(0, 5), match='hello'>
 
+print(re.match("app","apple"))
