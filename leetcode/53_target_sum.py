@@ -44,3 +44,21 @@ class Solution2(object):
 
 s=Solution2()
 print(s.findTargetSumWays([1,1,1,1,1],3))
+
+###############################################################################
+
+class Solution(object):
+    def findTargetSumWays(self, nums, S):
+        total = sum(nums)
+        if S > total:
+            return 0
+        if (S + total) % 2 != 0:
+            return 0
+        
+        w = (S + total) // 2
+        n = len(nums)
+        dp = [0]*(w+1)
+        dp[0]=1
+        for val in nums:
+            dp=[dp[s]+dp[s-val] if val<=s else dp[s] for s in range(w+1)]
+        return dp[w]
