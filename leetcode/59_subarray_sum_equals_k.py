@@ -16,6 +16,10 @@ class Solution:
             # k = current_sum - x  --( x -k)-->  x = current_Sum - k
             # add number of occurrences of x to counter, or 0 if no such sum exists
             count += sum_count[current_sum - k]
+            '''
+            total-x=k
+            x=total-k
+            '''
             # update sum counter
             sum_count[current_sum] += 1
         # check if any of the sums from the first to any other position in the list match k
