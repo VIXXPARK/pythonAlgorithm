@@ -35,3 +35,4 @@ def twoSum3(nums, target):
                 h[num] = i
             else:
                 return [h[n], i]
+
