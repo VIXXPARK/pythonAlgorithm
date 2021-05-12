@@ -1,31 +1,44 @@
 class Solution:
-    def exist(self, board, word: str) -> bool:
-        startChar=word[0]
-        row=len(board);col=len(board[0])
-        visited=[[False]*col for _ in range(row)]
-        for i in range(row):
-            for j in range(col):
-                if startChar==board[i][j]:
-                    visited[i][j]=True
-                    if self.dfs(board,word,i,j,row,col,visited,1):
-                        return True
-                    visited[i][j]=False
-        return False
-    
-    def dfs(self,board,word,i,j,row,col,visited,cur):
-        dy=[1,-1,0,0]
-        dx=[0,0,1,-1]
-        if len(word)==cur:
-            return True
-        for idx in range(4):
-            fy,fx=i+dy[idx],j+dx[idx]
-            if 0<=fy<row and 0<=fx<col:
-                if board[fy][fx]==word[cur] and not visited[fy][fx]:
-                    visited[fy][fx]=True
-                    if self.dfs(board,word,fy,fx,row,col,visited,cur+1):
-                        return True
-                    visited[fy][fx]=False
-        return False
+    def search(self, nums, target: int) -> int:
+        if len(nums)<=2:
+            for i in range(len(nums)):
+                if nums[i]==target:
+                    return i
+            return -1
+        start=0;end=len(nums)-1
+        pivot=-1
+        while start<=end and nums[start]>nums[end]:
+            mid=(start+end)//2
+            if nums[mid-1]>nums[mid+1]:
+                if nums[mid-1]<nums[mid]:
+                    pivot=mid
+                    break
+                else:
+                    pivot=mid-1
+                    break
+            else:
+                end=mid-1
+        def binary_search(arr:list,target:int)->int:
+            lo,hi=0,len(arr)-1
+            while lo<=hi:
+                mid=(lo+hi)//2
+                if arr[mid]<target:
+                    lo=mid+1
+                elif arr[mid]>target:
+                    hi=mid-1
+                else:
+                    return mid
+            return -1
+        if pivot==-1:
+            return binary_search(nums,target)
+        if nums[start]<=target<=nums[pivot]:
+            x=binary_search(nums[:pivot+1],target)
+            return x if x!=-1 else -1
+        elif nums[pivot+1]<=target<=nums[len(nums)-1]:
+            x=binary_search(nums[pivot+1:],target)
+            return x+pivot+1 if x!=-1 else -1
+        else:
+            return -1
 
-s= Solution()
-print(s.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]],"ABCB"))
+s=Solution()
+print(s.search([6,7,1,2,3,4,5],))
