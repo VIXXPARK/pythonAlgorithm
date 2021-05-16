@@ -40,7 +40,7 @@ class Solution2:
             hashmap[curr_sum] += 1
             helper(curr_sum, node.left, result)
             helper(curr_sum, node.right, result)
-            hashmap[curr_sum] -= 1
+            hashmap[curr_sum] -= 1 ## 트리의 방향이 달라지면 무시해야 하므로 해당 자식을 돌면 없애주는 것
             
         helper(0, root, result)
         return result[0]
