@@ -1,17 +1,24 @@
-def nextPermutation(nums):
-    i = j = len(nums)-1
-    while i > 0 and nums[i-1] >= nums[i]:
-        i -= 1
-    if i == 0:   # nums are in descending order
-        nums.reverse()
-        return 
-    k = i - 1    # find the last "ascending" position
-    while nums[j] <= nums[k]:
-        j -= 1
-    nums[k], nums[j] = nums[j], nums[k]  
-    l, r = k+1, len(nums)-1  # reverse the second part
-    while l < r:
-        nums[l], nums[r] = nums[r], nums[l]
-        l +=1 ; r -= 1
-
-nextPermutation([1,5,2,3,4])
+class Solution:
+    def maxProduct(self, nums) -> int:
+        minusVal=0
+        dp=[0]*(len(nums))
+        dp[0]=nums[0]
+        ans=dp[0]
+        minusVal=nums[0] if nums[0]<0 else 0
+        for i in range(1,len(nums)):
+            ans=max(ans,nums[i])
+            dp[i]=dp[i-1]*nums[i] if dp[i-1]!=0 else nums[i]
+            if dp[i]<0:
+                if minusVal==0:
+                    minusVal=dp[i]
+                elif nums[i]==0:
+                    minusVal=0
+                    ans=max(ans,nums[i])
+                else:
+                    ans=max(ans,dp[i]//minusVal)
+                    minusVal=max(minusVal,dp[i])
+            else:
+                ans=max(dp[i],ans)
+        return ans
+s=Solution()
+print(s.maxProduct([-1,0,-2,2]))
