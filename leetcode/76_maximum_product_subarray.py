@@ -9,16 +9,14 @@ class Solution:
             if now<0: ## 음수일때
                 if minusVal==0: ## 초기 세팅이 0일 때
                     minusVal=now # 초기화 
-                    last=now # 앞으로 전진
                 else:
                     ans=max(ans,now//minusVal) # 이전 값에 음수가 있을 때
                     minusVal=max(minusVal,now)
-                    last=now
             else: # 양수일 때
                 if nums[i]==0: ## 만일 0이라면
                     minusVal=0
                 ans=max(now,ans)
-                last=now
+            last=now
         return ans
 ##########################################################################################
 def maxProduct(self, nums):
