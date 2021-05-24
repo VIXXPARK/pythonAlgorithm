@@ -1,24 +1,23 @@
+from collections import defaultdict,deque
 class Solution:
-    def maxProduct(self, nums) -> int:
-        minusVal=0
-        dp=[0]*(len(nums))
-        dp[0]=nums[0]
-        ans=dp[0]
-        minusVal=nums[0] if nums[0]<0 else 0
-        for i in range(1,len(nums)):
-            ans=max(ans,nums[i])
-            dp[i]=dp[i-1]*nums[i] if dp[i-1]!=0 else nums[i]
-            if dp[i]<0:
-                if minusVal==0:
-                    minusVal=dp[i]
-                elif nums[i]==0:
-                    minusVal=0
-                    ans=max(ans,nums[i])
-                else:
-                    ans=max(ans,dp[i]//minusVal)
-                    minusVal=max(minusVal,dp[i])
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        item=defaultdict(int)
+        q=deque()
+        ans=0;total=0
+        for val in s:
+            if item[val]!=0:
+                while q:
+                    x=q.popleft()
+                    item[x]-=1;total-=1
+                    if x==val:
+                        total+=1;item[val]+=1;q.append(val)
+                        break     
             else:
-                ans=max(dp[i],ans)
+                q.append(val)
+                total+=1;item[val]=1
+                ans=max(ans,total)
         return ans
+                
+                
 s=Solution()
-print(s.maxProduct([-1,0,-2,2]))
+print(s.lengthOfLongestSubstring("bbtablud"))
