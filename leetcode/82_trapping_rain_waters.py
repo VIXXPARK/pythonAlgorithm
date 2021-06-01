@@ -55,6 +55,8 @@ def trap(self, bars):
     return volume
 
 ##################################################################
+
+
 def trap(height):
     waterLevel = []
     left = 0
@@ -67,4 +69,3 @@ def trap(height):
         waterLevel[i] = min(waterLevel[i], right) - \
             h  # drain to the right height
     return sum(waterLevel)
-
